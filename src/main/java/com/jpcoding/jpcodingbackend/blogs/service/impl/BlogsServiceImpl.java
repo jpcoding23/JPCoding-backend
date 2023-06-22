@@ -1,5 +1,8 @@
 package com.jpcoding.jpcodingbackend.blogs.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +37,7 @@ public class BlogsServiceImpl implements BlogsService {
 		return savedBlogDto;
 	}
 
+
 	@Override
 	public BlogsDto getBlogbyId(Long blogId) {
 		// TODO Auto-generated method stub
@@ -42,4 +46,12 @@ public class BlogsServiceImpl implements BlogsService {
 		return foundBlogDto;
 	}
 
+	@Override
+	public List<BlogsDto> getAllBlogs() {
+		// TODO Auto-generated method stub
+		List<Blogs> blogs = blogsRepository.findAll();
+		List<BlogsDto> foundBlogsDto = blogs.stream().map(blog -> BlogsMapper.maptoBlogsDto(blog))
+				.collect(Collectors.toList());
+		return foundBlogsDto;
+	}
 }
