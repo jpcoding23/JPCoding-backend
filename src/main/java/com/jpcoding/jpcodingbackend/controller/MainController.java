@@ -10,4 +10,9 @@ public class MainController {
 	public String sayHello() {
 		return "Hello World";
 	}
+
+	@GetMapping("/api/")
+	public String api() {
+		return "Hello World";
+	}
 }
